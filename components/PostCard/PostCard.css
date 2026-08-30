@@ -1,0 +1,119 @@
+/* =========================
+   CARD
+========================= */
+
+.post-card {
+  position: relative;
+  width: 100%;
+  min-height: 390px;
+  padding: 20px;
+  border-radius: 20px;
+
+  background: #a77b7b4b;
+
+  box-shadow:
+    6px 6px 12px rgba(67, 40, 24, 0.35),
+    -6px -6px 12px rgba(255, 230, 167, 0.12);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-10px);
+
+  box-shadow:
+    8px 14px 20px rgba(67, 40, 24, 0.4),
+    -5px -5px 15px rgba(255, 230, 167, 0.15);
+}
+
+
+/* =========================
+   CARD IMAGE
+========================= */
+
+.post-card-image {
+  min-height: 150px;
+  display: flex;
+  align-items: flex-end;
+  padding: 18px;
+  border-radius: 15px;
+
+  background-image: url('https://img.magnific.com/free-vector/abstract-modern-background-paper-cut-background-vector-illustration_474888-6878.jpg?semt=ais_hybrid&w=740&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  box-shadow:
+    inset 8px 8px 12px rgba(67, 40, 24, 0.2),
+    inset -8px -8px 12px rgba(255, 230, 167, 0.12);
+}
+
+.post-card-image span {
+  padding: 6px 11px;
+  border-radius: 999px;
+
+  background: rgba(67, 40, 24, 0.55);
+  border: 1px solid rgba(255, 230, 167, 0.35);
+
+  color: #ffe6a7;
+
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  backdrop-filter: blur(8px);
+}
+
+
+/* =========================
+   CARD TITLE
+========================= */
+
+.post-card-title {
+  margin: 18px 0 0 10px;
+
+  color: #432818;
+
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+
+/* =========================
+   CARD BODY
+========================= */
+
+.post-card-body {
+  margin: 12px 10px 0;
+
+  color: #432818;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.post-card-footer {
+  margin: 20px 0 0 10px;
+
+  color: #6f1d1b;
+
+  font-size: 12px;
+}
+
+.by-name {
+  color: #6f1d1b;
+  font-weight: 700;
+}
+
+.date {
+  color: #432818;
+}
