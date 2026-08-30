@@ -1,0 +1,210 @@
+
+.my-posts-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 75% 25%;
+  background: #F3E6D0;
+  color: #432818;
+  overflow: hidden;
+}
+/* =========================
+   POSTS
+========================= */
+
+.posts-section {
+  position: relative;
+  z-index: 2;
+  padding: 80px 7vw;
+  overflow-y: auto;
+}
+
+.posts-header {
+  max-width: 650px;
+  margin-bottom: 50px;
+}
+
+.posts-label {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 7px 14px;
+
+  border: 1px solid rgba(196, 181, 253, 0.3);
+  border-radius: 999px;
+
+  background: rgba(139, 92, 246, 0.12);
+
+  color: #c4b5fd;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.posts-header h1 {
+  margin: 0;
+
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -3px;
+  color: #432818;
+}
+
+.posts-header p {
+  max-width: 520px;
+  margin-top: 22px;
+
+  color: #b8a9d3;
+
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+/* =========================
+   POSTS LIST
+========================= */
+
+.posts-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: none;
+}
+
+
+/* =========================
+   READ MORE
+========================= */
+
+.read-more {
+  position: absolute;
+
+  right: 20px;
+  bottom: 20px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #6d28d9;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.read-more:hover {
+  color: #4c1d95;
+  transform: translateX(3px);
+}
+
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1100px) {
+  .my-posts-page {
+    grid-template-columns: 66% 34%;
+  }
+
+  .posts-section {
+    padding: 60px 40px;
+  }
+
+  .posts-header h1 {
+    font-size: 48px;
+  }
+
+  .posts-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .my-posts-page {
+    display: flex;
+    flex-direction: column;
+
+    overflow: visible;
+  }
+
+  .posts-section {
+    order: 1;
+
+    padding: 50px 20px 30px;
+  }
+
+  .posts-header {
+    margin-bottom: 30px;
+  }
+
+  .posts-header h1 {
+    font-size: 44px;
+  }
+
+  .posts-header p {
+    font-size: 15px;
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+  }
+
+  .post-card {
+    min-height: 370px;
+  }
+
+  .lanyard-section {
+    order: 2;
+
+    min-height: 600px;
+    height: 600px;
+  }
+
+  .lanyard-container {
+    height: 600px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .posts-section {
+    padding: 40px 16px 20px;
+  }
+
+  .posts-header h1 {
+    font-size: 38px;
+  }
+
+  .post-card {
+    min-height: 360px;
+  }
+
+  .lanyard-section {
+    min-height: 500px;
+    height: 500px;
+  }
+
+  .lanyard-container {
+    height: 500px;
+  }
+}
+

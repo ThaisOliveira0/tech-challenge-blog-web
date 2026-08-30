@@ -1,69 +1,115 @@
-import Image from "next/image";
+'use client'
+
+import { useState } from 'react'
+import PostCard from '@/components/PostCard/PostCard'
+import './Home.css'
+
+const posts = [
+  {
+    id: 1,
+    title: 'How to improve your English vocabulary',
+    excerpt:
+      'Some useful tips and strategies to expand your vocabulary and learn new words every day.',
+    date: 'Aug 28, 2026',
+    category: 'English',
+    image: 'https://i.ytimg.com/vi/Sa4Z91dn1eo/maxresdefault.jpg',
+  },
+  {
+    id: 2,
+    title: 'The importance of reading in English',
+    excerpt:
+      'Reading regularly can help you improve your vocabulary, grammar and comprehension skills.',
+    date: 'Aug 25, 2026',
+    category: 'Learning',
+    image: 'https://i.ytimg.com/vi/Sa4Z91dn1eo/maxresdefault.jpg',
+  },
+  {
+    id: 3,
+    title: '5 common mistakes English learners make',
+    excerpt:
+      'Let’s take a look at some common mistakes and how you can avoid them.',
+    date: 'Aug 21, 2026',
+    category: 'Tips',
+    image: 'https://i.ytimg.com/vi/Sa4Z91dn1eo/maxresdefault.jpg',
+  },
+  {
+    id: 4,
+    title: 'English vocabulary for traveling',
+    excerpt:
+      'Useful English words and expressions that you can use during your next trip.',
+    date: 'Aug 18, 2026',
+    category: 'Travel',
+    image: 'https://i.ytimg.com/vi/Sa4Z91dn1eo/maxresdefault.jpg',
+  },
+  {
+    id: 5,
+    title: 'How to practice English every day',
+    excerpt:
+      'Simple habits that can help you practice English and improve your skills.',
+    date: 'Aug 15, 2026',
+    category: 'Practice',
+    image: 'https://i.ytimg.com/vi/Sa4Z91dn1eo/maxresdefault.jpg',
+  },
+]
 
 export default function Home() {
+  const [search, setSearch] = useState('')
+
+  const filteredPosts = posts.filter((post) => {
+    const searchTerm = search.toLowerCase()
+
+    return (
+      post.title.toLowerCase().includes(searchTerm) ||
+      post.excerpt.toLowerCase().includes(searchTerm) ||
+      post.category.toLowerCase().includes(searchTerm)
+    )
+  })
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="home-page">
+      <section className="latest-posts">
+        <div className="home-header">
+          <div className="home-header-content">
+            <div>
+              <h1>Learn, Teach & Repeat</h1>
+
+              <p>
+                Explore posts, tips and useful content to help you improve your English.
+              </p>
+            </div>
+
+            <div className="search-container">
+              <input
+                type="text"
+                placeholder="Search posts..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="search-input"
+              />
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+
+        <div className="home-posts-list">
+          {filteredPosts.map((post) => (
+            <PostCard
+              key={post.id}
+              title={post.title}
+              excerpt={post.excerpt}
+              date={post.date}
+              category={post.category}
+              image={post.image}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
         </div>
-      </main>
-    </div>
-  );
+
+        {filteredPosts.length === 0 && (
+          <p className="no-results">No posts found.</p>
+        )}
+      </section>
+
+      <div className="purple-glow home-glow-one" />
+      <div className="purple-glow home-glow-two" />
+    </main>
+  )
 }
