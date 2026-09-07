@@ -1,25 +1,33 @@
+import Link from 'next/link'
 import './PostCard.css'
 
 type PostCardProps = {
+  id?: number
   title: string
   excerpt: string
   date: string
   category: string
-  image: string
+  author?: string
+  image?: string
 }
 
 export default function PostCard({
+  id,
   title,
   excerpt,
   date,
   category,
+  author = 'Professor',
   image,
 }: PostCardProps) {
+  const postUrl = id ? `/posts/${id}` : '#'
+
   return (
+    <Link className="post-card-link" href={postUrl} aria-label={`Abrir post: ${title}`}>
     <article className="post-card">
       <div
         className="post-card-image"
-        style={{ backgroundImage: `url(${image})` }}
+        style={image ? { backgroundImage: `url(${image})` } : undefined}
       >
         <span>{category}</span>
       </div>
@@ -29,11 +37,12 @@ export default function PostCard({
       <p className="post-card-body">{excerpt}</p>
 
       <p className="post-card-footer">
-        Written by <span className="by-name">Teacher</span> on{' '}
+        Escrito por <span className="by-name">{author}</span> em{' '}
         <span className="date">{date}</span>
       </p>
 
-      <button className="read-more">Read post →</button>
+      <span className="read-more">Abrir post <span aria-hidden="true">-&gt;</span></span>
     </article>
+    </Link>
   )
 }

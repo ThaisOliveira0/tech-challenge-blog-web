@@ -1,69 +1,36 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PostCard from '@/components/PostCard/PostCard'
+import { postsService } from '@/services/posts.service'
+import type { Post } from '@/types/post'
 import './Home.css'
-
-const posts = [
-  {
-    id: 1,
-    title: 'How to improve your English vocabulary',
-    excerpt:
-      'Some useful tips and strategies to expand your vocabulary and learn new words every day.',
-    date: 'Aug 28, 2026',
-    category: 'English',
-    image: 'https://i.ytimg.com/vi/Sa4Z91dn1eo/maxresdefault.jpg',
-  },
-  {
-    id: 2,
-    title: 'The importance of reading in English',
-    excerpt:
-      'Reading regularly can help you improve your vocabulary, grammar and comprehension skills.',
-    date: 'Aug 25, 2026',
-    category: 'Learning',
-    image: 'https://i.ytimg.com/vi/Sa4Z91dn1eo/maxresdefault.jpg',
-  },
-  {
-    id: 3,
-    title: '5 common mistakes English learners make',
-    excerpt:
-      'Let’s take a look at some common mistakes and how you can avoid them.',
-    date: 'Aug 21, 2026',
-    category: 'Tips',
-    image: 'https://i.ytimg.com/vi/Sa4Z91dn1eo/maxresdefault.jpg',
-  },
-  {
-    id: 4,
-    title: 'English vocabulary for traveling',
-    excerpt:
-      'Useful English words and expressions that you can use during your next trip.',
-    date: 'Aug 18, 2026',
-    category: 'Travel',
-    image: 'https://i.ytimg.com/vi/Sa4Z91dn1eo/maxresdefault.jpg',
-  },
-  {
-    id: 5,
-    title: 'How to practice English every day',
-    excerpt:
-      'Simple habits that can help you practice English and improve your skills.',
-    date: 'Aug 15, 2026',
-    category: 'Practice',
-    image: 'https://i.ytimg.com/vi/Sa4Z91dn1eo/maxresdefault.jpg',
-  },
-]
 
 export default function Home() {
   const [search, setSearch] = useState('')
+  const [posts, setPosts] = useState<Post[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState('')
 
-  const filteredPosts = posts.filter((post) => {
-    const searchTerm = search.toLowerCase()
+  useEffect(() => {
+    let isCurrent = true
+    setIsLoading(true)
+    setError('')
 
-    return (
-      post.title.toLowerCase().includes(searchTerm) ||
-      post.excerpt.toLowerCase().includes(searchTerm) ||
-      post.category.toLowerCase().includes(searchTerm)
-    )
-  })
+    const request = search.trim()
+      ? postsService.search(search.trim())
+      : postsService.list()
+
+    request.then((data) => {
+      if (isCurrent) setPosts(data)
+    }).catch((requestError) => {
+      if (isCurrent) setError(requestError instanceof Error ? requestError.message : 'Não foi possível carregar os posts.')
+    }).finally(() => {
+      if (isCurrent) setIsLoading(false)
+    })
+
+    return () => { isCurrent = false }
+  }, [search])
 
   return (
     <main className="home-page">
@@ -71,17 +38,17 @@ export default function Home() {
         <div className="home-header">
           <div className="home-header-content">
             <div>
-              <h1>Learn, Teach & Repeat</h1>
+              <h1>Aprenda, ensine e repita</h1>
 
               <p>
-                Explore posts, tips and useful content to help you improve your English.
+                Explore posts, dicas e conteúdos úteis para evoluir no seu aprendizado.
               </p>
             </div>
 
             <div className="search-container">
               <input
                 type="text"
-                placeholder="Search posts..."
+                placeholder="Pesquisar posts..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="search-input"
@@ -91,21 +58,22 @@ export default function Home() {
         </div>
 
         <div className="home-posts-list">
-          {filteredPosts.map((post) => (
+          {posts.map((post) => (
             <PostCard
               key={post.id}
+              id={post.id}
               title={post.title}
-              excerpt={post.excerpt}
-              date={post.date}
-              category={post.category}
-              image={post.image}
+              excerpt={post.content.slice(0, 150)}
+              date={new Date(post.createdAt).toLocaleDateString('pt-BR')}
+              category="Post"
+              author={post.user?.name}
             />
           ))}
         </div>
 
-        {filteredPosts.length === 0 && (
-          <p className="no-results">No posts found.</p>
-        )}
+        {isLoading && <p className="no-results">Carregando posts...</p>}
+        {!isLoading && error && <p className="no-results">{error}</p>}
+        {!isLoading && !error && posts.length === 0 && <p className="no-results">Nenhum post encontrado.</p>}
       </section>
 
       <div className="purple-glow home-glow-one" />
