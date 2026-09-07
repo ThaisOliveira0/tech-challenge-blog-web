@@ -258,7 +258,6 @@ color: #f5f3ff;
 
 .home-header h1 {
   margin: 0;
-  white-space: nowrap;
   font-size: clamp(42px, 5vw, 72px);
   line-height: 1;
   letter-spacing: -3px;
@@ -271,12 +270,11 @@ color: #f5f3ff;
   color: #b8a9d3;
   font-size: 17px;
   line-height: 1.7;
-  white-space: nowrap;
 }
 
 .search-container {
   flex-shrink: 0;
-  width: 320px;
+  width: min(320px, 100%);
 }
 
 .search-input {
@@ -291,4 +289,16 @@ color: #f5f3ff;
   font-family: inherit;
   font-size: 14px;
   backdrop-filter: blur(10px);
+}
+
+@media (max-width: 768px) {
+  .home-header-content {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .search-container {
+    width: 100%;
+  }
 }

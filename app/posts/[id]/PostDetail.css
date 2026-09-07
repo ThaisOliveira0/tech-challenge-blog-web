@@ -1,0 +1,36 @@
+.post-detail-page { min-height: calc(100vh - 112px); padding: 56px 7vw 88px; background: #f4ead8; color: #2e1b16; }
+.post-detail-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 56px; width: min(1180px, 100%); margin: 0 auto; }
+.post-detail-article { min-width: 0; }
+.post-detail-kicker { margin: 0 0 20px; color: #8d4a38; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.post-detail-title { max-width: 800px; margin: 0; color: #432818; font-size: clamp(40px, 6vw, 76px); line-height: 1; letter-spacing: -2px; }
+.post-detail-meta { margin: 22px 0 42px; color: #76594b; font-size: 14px; }
+.post-owner-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: -22px 0 32px; }
+.post-owner-actions a, .post-owner-actions button { min-height: 40px; padding: 10px 14px; border: 1px solid #6f1d1b; border-radius: 4px; background: transparent; color: #6f1d1b; font: inherit; font-size: 13px; font-weight: 700; text-decoration: none; cursor: pointer; }
+.post-owner-actions a:hover, .post-owner-actions button:hover { background: #6f1d1b; color: #fffaf1; }
+.post-detail-content { max-width: 750px; border-top: 1px solid #cba995; padding-top: 32px; color: #432818; font-family: Georgia, serif; font-size: 20px; line-height: 1.8; white-space: pre-line; }
+.comments-panel { align-self: start; border-top: 5px solid #6f1d1b; padding: 26px 24px 24px; background: #fffaf1; box-shadow: 8px 9px 0 #d5b29d; }
+.comments-panel h2 { margin: 0; color: #432818; font-size: 24px; }
+.comments-count { margin: 6px 0 24px; color: #8d4a38; font-size: 13px; }
+.comment-list { display: grid; gap: 18px; }
+.comment { border-bottom: 1px solid #ead5c2; padding-bottom: 18px; }
+.comment:last-child { border-bottom: 0; padding-bottom: 0; }
+.comment-author { margin: 0 0 5px; color: #6f1d1b; font-size: 13px; font-weight: 700; }
+.comment-text { margin: 0; color: #76594b; font-size: 14px; line-height: 1.55; }
+.comment-form-input { width: 100%; min-height: 80px; resize: vertical; padding: 10px; border: 1px solid #cba995; background: #fffdf8; color: #2e1b16; font: inherit; }
+.comment-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.comment-actions button { border: 1px solid #cba995; border-radius: 4px; padding: 6px 9px; background: transparent; color: #6f1d1b; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
+.comment-actions button:hover { background: #6f1d1b; color: #fffaf1; }
+.comment-form { display: grid; gap: 10px; margin-top: 26px; padding-top: 22px; border-top: 1px solid #cba995; }
+.comment-form label { color: #432818; font-size: 13px; font-weight: 700; }
+.comment-form textarea { min-height: 96px; resize: vertical; padding: 12px; border: 1px solid #cba995; border-radius: 4px; background: #fffdf8; color: #2e1b16; font: inherit; }
+.comment-form textarea:focus { outline: 3px solid #e3ad73; outline-offset: 2px; border-color: #6f1d1b; }
+.comment-submit { min-height: 42px; border: 0; border-radius: 4px; background: #6f1d1b; color: #fffaf1; font: inherit; font-weight: 700; cursor: pointer; }
+.comment-submit:hover { background: #4c1414; }
+.detail-message { width: min(760px, 100%); margin: 0 auto; color: #432818; }
+
+@media (max-width: 800px) {
+  .post-detail-page { padding: 36px 20px 64px; }
+  .post-detail-layout { grid-template-columns: 1fr; gap: 42px; }
+  .post-detail-title { font-size: clamp(40px, 12vw, 62px); }
+  .post-detail-content { font-size: 18px; }
+}

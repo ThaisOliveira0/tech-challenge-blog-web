@@ -1,0 +1,5 @@
+.breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; color: #8d4a38; font-size: 13px; }
+.breadcrumb-item { display: inline-flex; align-items: center; gap: 8px; }
+.breadcrumb a { color: #6f1d1b; font-weight: 700; text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb-separator { color: #cba995; }
