@@ -5,40 +5,52 @@ import type {
   UpdatePostData,
 } from '@/types/post'
 
+type ApiData<T extends object> = T | { data: T }
+
+function unwrap<T extends object>(response: ApiData<T>) {
+  return 'data' in response ? response.data : response
+}
+
 export const postsService = {
   async list() {
-    return apiFetch<Post[]>('/posts')
+    const response = await apiFetch<ApiData<Post[]>>('/posts')
+    return unwrap(response)
   },
 
   async me() {
-    return apiFetch<Post[]>('/posts/me')
+    const response = await apiFetch<ApiData<Post[]>>('/posts/me')
+    return unwrap(response)
   },
 
   async search(term: string) {
-    return apiFetch<Post[]>(
+    const response = await apiFetch<ApiData<Post[]>>(
       `/posts/search?q=${encodeURIComponent(term)}`
     )
+    return unwrap(response)
   },
 
   async findById(id: string) {
-    return apiFetch<Post>(`/posts/${id}`)
+    const response = await apiFetch<ApiData<Post>>(`/posts/${id}`)
+    return unwrap(response)
   },
 
   async create(data: CreatePostData) {
-    return apiFetch<{ message: string; data: Post }>('/posts', {
+    const response = await apiFetch<ApiData<Post>>('/posts', {
       method: 'POST',
       body: JSON.stringify(data),
     })
+    return unwrap(response)
   },
 
   async update(id: string, data: UpdatePostData) {
-    return apiFetch<{ message: string; data: Post }>(
+    const response = await apiFetch<ApiData<Post>>(
       `/posts/${id}`,
       {
         method: 'PUT',
         body: JSON.stringify(data),
       }
     )
+    return unwrap(response)
   },
 
   async delete(id: string) {

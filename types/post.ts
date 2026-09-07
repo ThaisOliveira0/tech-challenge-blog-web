@@ -5,6 +5,16 @@ export interface Post {
   userId: number
   createdAt: string
   updatedAt: string
+  user?: PostAuthor
+}
+
+export interface PostAuthor {
+  id: number
+  name: string
+  email: string
+  role: 'teacher' | 'student'
+  createdAt?: string
+  updatedAt?: string
 }
 
 export interface CreatePostData {
@@ -15,4 +25,22 @@ export interface CreatePostData {
 export interface UpdatePostData {
   title?: string
   content?: string
+}
+
+export interface Comment {
+  id: number
+  content: string
+  userId: number
+  postId: number
+  createdAt: string
+  updatedAt: string
+  user?: PostAuthor
+}
+
+export interface CreateCommentData {
+  content: string
+}
+
+export interface UpdateCommentData {
+  content: string
 }

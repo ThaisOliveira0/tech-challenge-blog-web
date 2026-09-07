@@ -3,6 +3,8 @@ export interface User {
   name: string
   email: string
   role: 'teacher' | 'student'
+  createdAt?: string
+  updatedAt?: string
 }
 
 export interface RegisterData {
