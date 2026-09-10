@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import AppNavigation from "@/components/Navigation/AppNavigation";
+import AuthGate from "@/components/AuthGate/AuthGate";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -9,8 +10,11 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "My Blog",
-  description: "My personal blog",
+  title: "Blog Web",
+  description: "Aprenda, ensine e compartilhe conhecimento.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -27,9 +31,7 @@ export default function RootLayout({
           <AppNavigation />
         </header>
 
-        <main className="flex-1">
-          {children}
-        </main>
+        <AuthGate>{children}</AuthGate>
 
       </body>
     </html>

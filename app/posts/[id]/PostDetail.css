@@ -11,7 +11,7 @@
 .comments-panel { align-self: start; border-top: 5px solid #6f1d1b; padding: 26px 24px 24px; background: #fffaf1; box-shadow: 8px 9px 0 #d5b29d; }
 .comments-panel h2 { margin: 0; color: #432818; font-size: 24px; }
 .comments-count { margin: 6px 0 24px; color: #8d4a38; font-size: 13px; }
-.comment-list { display: grid; gap: 18px; }
+.comment-list { display: grid; gap: 18px; max-height: min(52vh, 520px); overflow-y: auto; padding: 2px 12px 2px 0; scrollbar-color: #cba995 transparent; }
 .comment { position: relative; border-bottom: 1px solid #ead5c2; padding: 0 0 18px; }
 .comment:last-child { border-bottom: 0; padding-bottom: 0; }
 .comment-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }

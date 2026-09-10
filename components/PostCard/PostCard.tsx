@@ -41,7 +41,6 @@ export default function PostCard({
         <span className="date">{date}</span>
       </p>
 
-      <span className="read-more">Abrir post <span aria-hidden="true">-&gt;</span></span>
     </article>
     </Link>
   )

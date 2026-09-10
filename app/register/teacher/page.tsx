@@ -6,7 +6,7 @@ import { authService } from '@/services/auth.service'
 import { getCurrentUser } from '@/lib/auth'
 import PasswordField from '@/components/PasswordField/PasswordField'
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb'
-import '../../../auth.css'
+import '../../auth.css'
 
 export default function RegisterTeacherPage() {
   const router = useRouter()

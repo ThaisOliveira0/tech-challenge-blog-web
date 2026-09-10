@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { LogOut } from 'lucide-react'
 import GooeyNav from './GooeyNav'
 import { AUTH_CHANGED_EVENT, clearSession, getCurrentUser } from '@/lib/auth'
 import type { User } from '@/types/auth'
@@ -49,7 +50,9 @@ export default function AppNavigation() {
       {user ? (
         <div className="session-actions">
           <span className="session-user" title={user.email}>Olá, {user.name.trim().split(/\s+/)[0]}</span>
-          <button type="button" onClick={handleLogout}>Sair</button>
+          <button className="logout-button" type="button" onClick={handleLogout} title="Sair" aria-label="Sair">
+            <LogOut size={17} aria-hidden="true" />
+          </button>
         </div>
       ) : (
         <a className="session-login" href="/login">Entrar</a>

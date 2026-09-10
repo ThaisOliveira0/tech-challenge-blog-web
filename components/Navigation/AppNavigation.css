@@ -38,6 +38,14 @@
   margin-left: auto;
 }
 
+.session-actions .logout-button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+
 .session-actions button:hover,
 .session-login:hover {
   background: #fffaf1;
