@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FormEvent, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { authService } from '@/services/auth.service'
+import PasswordField from '@/components/PasswordField/PasswordField'
 import '../auth.css'
 
 export default function RegisterPage() {
@@ -47,7 +48,7 @@ export default function RegisterPage() {
           <form className="auth-form" onSubmit={handleSubmit}>
             <div className="field"><label htmlFor="name">Nome</label><input id="name" value={form.name} onChange={(event) => updateField('name', event.target.value)} autoComplete="name" required /></div>
             <div className="field"><label htmlFor="register-email">E-mail</label><input id="register-email" type="email" value={form.email} onChange={(event) => updateField('email', event.target.value)} autoComplete="email" required /></div>
-            <div className="field"><label htmlFor="register-password">Senha</label><input id="register-password" type="password" value={form.password} onChange={(event) => updateField('password', event.target.value)} autoComplete="new-password" required minLength={6} /></div>
+            <PasswordField id="register-password" value={form.password} onChange={(value) => updateField('password', value)} autoComplete="new-password" />
             {error && <p className="auth-error" role="alert">{error}</p>}
             <button className="auth-submit" type="submit" disabled={isLoading}>{isLoading ? 'Criando conta...' : 'Criar minha conta'}</button>
           </form>

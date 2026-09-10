@@ -15,6 +15,7 @@
   border: 1px solid #cba995;
   background: #fffaf1;
   box-shadow: 12px 14px 0 #d5b29d;
+  min-width: 0;
 }
 
 .auth-intro {
@@ -39,6 +40,12 @@
 .field label { color: #432818; font-size: 13px; font-weight: 700; }
 .field input, .field select { width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid #cba995; border-radius: 4px; background: #fffdf8; color: #2e1b16; font: inherit; }
 .field input:focus, .field select:focus { outline: 3px solid #e3ad73; outline-offset: 2px; border-color: #6f1d1b; }
+.password-field { display: grid; gap: 8px; }
+.password-field label { color: #432818; font-size: 13px; font-weight: 700; }
+.password-input-wrap { position: relative; }
+.password-input-wrap input { padding-right: 48px; }
+.password-toggle { position: absolute; top: 50%; right: 10px; display: grid; place-items: center; width: 32px; height: 32px; transform: translateY(-50%); border: 0; background: transparent; color: #6f1d1b; cursor: pointer; }
+.password-toggle:hover { color: #432818; }
 .auth-submit { display: inline-flex; justify-content: center; align-items: center; min-height: 50px; margin-top: 8px; border: 0; border-radius: 4px; background: #6f1d1b; color: #fffaf1; font: inherit; font-weight: 700; cursor: pointer; }
 .auth-submit:hover { background: #4c1414; }
 .auth-submit:disabled { cursor: wait; opacity: .65; }
@@ -48,7 +55,7 @@
 .auth-delete { background: #f9ded2; color: #6d1b12; }
 .auth-cancel:hover { background: #f4ead8; }
 .auth-delete:hover { background: #a33b24; color: #fffaf1; }
-.field textarea { width: 100%; min-height: 220px; resize: vertical; padding: 14px; border: 1px solid #cba995; border-radius: 4px; background: #fffdf8; color: #2e1b16; font: inherit; line-height: 1.6; }
+.field textarea { display: block; width: 100%; max-width: 100%; min-height: 220px; resize: vertical; overflow-wrap: anywhere; padding: 14px; border: 1px solid #cba995; border-radius: 4px; background: #fffdf8; color: #2e1b16; font: inherit; line-height: 1.6; }
 .field textarea:focus { outline: 3px solid #e3ad73; outline-offset: 2px; border-color: #6f1d1b; }
 .editor-tabs { display: inline-flex; gap: 4px; margin: 4px 0 22px; padding: 4px; border: 1px solid #cba995; background: #f4ead8; }
 .editor-tabs button { border: 0; padding: 9px 14px; background: transparent; color: #76594b; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
@@ -57,6 +64,7 @@
 .preview-label { color: #8d4a38; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .post-preview h3 { margin: 18px 0 16px; font-family: Georgia, serif; font-size: clamp(28px, 4vw, 42px); line-height: 1.05; }
 .post-preview p { white-space: pre-line; color: #76594b; font-family: Georgia, serif; line-height: 1.8; }
+.post-preview, .post-preview h3, .post-preview p { overflow-wrap: anywhere; }
 .auth-error { margin: 0; padding: 11px 12px; border-left: 3px solid #a33b24; background: #f9ded2; color: #6d1b12; font-size: 14px; }
 .auth-switch { margin: 26px 0 0; color: #76594b; font-size: 14px; }
 .auth-switch a { color: #6f1d1b; font-weight: 700; }

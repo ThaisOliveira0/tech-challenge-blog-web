@@ -5,6 +5,7 @@ import { FormEvent, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { authService } from '@/services/auth.service'
 import { saveSession } from '@/lib/auth'
+import PasswordField from '@/components/PasswordField/PasswordField'
 import '../auth.css'
 
 export default function LoginPage() {
@@ -45,7 +46,7 @@ export default function LoginPage() {
           <p className="auth-subtitle">Entre na sua conta para continuar de onde parou.</p>
           <form className="auth-form" onSubmit={handleSubmit}>
             <div className="field"><label htmlFor="email">E-mail</label><input id="email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" required /></div>
-            <div className="field"><label htmlFor="password">Senha</label><input id="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete="current-password" required minLength={6} /></div>
+            <PasswordField id="password" value={password} onChange={setPassword} autoComplete="current-password" />
             {error && <p className="auth-error" role="alert">{error}</p>}
             <button className="auth-submit" type="submit" disabled={isLoading}>{isLoading ? 'Entrando...' : 'Entrar na conta'}</button>
           </form>

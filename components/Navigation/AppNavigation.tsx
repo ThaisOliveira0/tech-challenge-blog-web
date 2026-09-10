@@ -31,20 +31,21 @@ export default function AppNavigation() {
   const items = user ? [
     { label: 'Home', href: '/' },
     ...(user.role === 'teacher' ? [{ label: 'My posts', href: '/my-posts' }] : []),
+    ...(user.role === 'admin' ? [{ label: 'Cadastrar professor', href: '/register/teacher' }] : []),
   ] : []
 
   return (
     <div className="app-navigation">
-      <GooeyNav
-        items={items}
-        particleCount={15}
-        particleDistances={[90, 10]}
-        particleR={100}
-        initialActiveIndex={0}
-        animationTime={600}
-        timeVariance={300}
-        colors={[1, 2, 3, 1, 2, 3, 1, 4]}
-      />
+      {items.length > 0 && <GooeyNav
+          items={items}
+          particleCount={15}
+          particleDistances={[90, 10]}
+          particleR={100}
+          initialActiveIndex={0}
+          animationTime={600}
+          timeVariance={300}
+          colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+        />}
       {user ? (
         <div className="session-actions">
           <span className="session-user" title={user.email}>Olá, {user.name.trim().split(/\s+/)[0]}</span>

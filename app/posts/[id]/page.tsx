@@ -1,6 +1,7 @@
 'use client'
 
 import { FormEvent, useEffect, useState } from 'react'
+import { Edit3, Trash2 } from 'lucide-react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { getCurrentUser } from '@/lib/auth'
@@ -135,12 +136,15 @@ export default function PostDetailPage() {
 						{comments.map((comment) => {
 							const isCommentOwner = currentUser?.id === comment.userId
 							return <div className="comment" key={comment.id}>
-								<p className="comment-author">{comment.user?.name || `Usuário #${comment.userId}`}</p>
+								<div className="comment-heading">
+									<div className="comment-avatar" aria-hidden="true">{(comment.user?.name || `U${comment.userId}`).slice(0, 2).toUpperCase()}</div>
+									<div><p className="comment-author">{comment.user?.name || `Usuário #${comment.userId}`}</p><time className="comment-date" dateTime={comment.createdAt}>{new Date(comment.createdAt).toLocaleDateString('pt-BR')}</time></div>
+								</div>
 								{editingCommentId === comment.id ? <>
 									<textarea className="comment-form-input" value={editingCommentText} onChange={(event) => setEditingCommentText(event.target.value)} />
 									<div className="comment-actions"><button type="button" onClick={() => handleUpdateComment(comment.id)}>Salvar</button><button type="button" onClick={() => setEditingCommentId(null)}>Cancelar</button></div>
 								</> : <p className="comment-text">{comment.content}</p>}
-								{isCommentOwner && editingCommentId !== comment.id && <div className="comment-actions"><button type="button" onClick={() => { setEditingCommentId(comment.id); setEditingCommentText(comment.content) }}>Editar</button><button type="button" onClick={() => setConfirmDelete({ type: 'comment', id: comment.id })}>Excluir</button></div>}
+								{isCommentOwner && editingCommentId !== comment.id && <div className="comment-actions"><button type="button" className="comment-icon-action" title="Editar comentário" aria-label="Editar comentário" onClick={() => { setEditingCommentId(comment.id); setEditingCommentText(comment.content) }}><Edit3 size={15} aria-hidden="true" /></button><button type="button" className="comment-icon-action comment-delete-action" title="Excluir comentário" aria-label="Excluir comentário" onClick={() => setConfirmDelete({ type: 'comment', id: comment.id })}><Trash2 size={15} aria-hidden="true" /></button></div>}
 							</div>
 						})}
 					</div>
